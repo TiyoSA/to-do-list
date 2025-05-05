@@ -18,6 +18,7 @@
       <li v-for="(todo, index) in filteredTodos" :key="index" :class="{ done: todo.done }">
         <input type="checkbox" v-model="todo.done" />
         {{ todo.text }} - <small>{{ todo.time }}</small>
+        <button @click="removeTodo(index)">Batal</button>
       </li>
     </ul>
   </div>
@@ -37,6 +38,10 @@ function addTodo() {
     newTodo.value = ''
     newTime.value = ''
   }
+}
+
+function removeTodo(index) {
+  todos.value.splice(index, 1)
 }
 
 const filteredTodos = computed(() => {
